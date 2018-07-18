@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>View Informer Details</title>
+			<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
+			
+			<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+	</head>
+	<body>
+		<div class="container">
+			<nav class="navbar navbar-expand-lg navbar-light bg-light">
+			  <a class="navbar-brand" href="#">Informer Database</a>
+			  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+			    <span class="navbar-toggler-icon"></span>
+			  </button>
+			  <div class="collapse navbar-collapse" id="navbarNav">
+			    <ul class="navbar-nav">
+			      <li class="nav-item">
+			        <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+			      </li>
+			      <li class="nav-item">
+			        <a class="nav-link" href="/input/">Input</a>
+			      </li>
+			      <li class="nav-item active">
+			        <a class="nav-link" href="/view/">View</a>
+			      </li>
+			    </ul>
+			  </div>
+			</nav>
+			<div class="jumbotron">
+			  <form method="post" action="/view/" id="inputForm">
+			{% csrf_token %}
+			<div class="form-group">
+    			<label for="beats">Example select</label>
+    			<select class="form-control" id="beats" name="beatsName" form="inputForm">
+				{% for beats in allBeats %}
+					<option value="{{beats.beatsName}}">{{beats.beatsName}}</option>
+				{% endfor %}
+				</select>
+			</div>
+
+			<button type="submit" class="btn btn-primary mb-2">Get Details</button>
+		</form>
+			<table class="table table-striped">
+				<thead>
+			  	  <tr>
+				      <th scope="col">Name</th>
+				      <th scope="col">Mobile</th>
+				      <th scope="col">Address</th>
+				      <th scope="col">Pincode</th>
+			      </tr>
+				  </thead>
+  				  <tbody>
+  				  	{% for informer in informers %}
+  				  		<tr>
+  				  			<td scope="row">{{informer.name}}</td>
+  				  			<td>{{informer.mobile}}</td>
+  				  			<td>{{informer.address}}</td>
+  				  			<td>{{informer.pincode}}</td>
+  				  		</tr>
+  				  	{% endfor %}
+  				  </tbody>
+			</table>
+			</div>
+		</div>
+		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+	</body>
+
+</html>

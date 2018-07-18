@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Input Informer Details</title>
+			<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
+			
+			<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+	</head>
+	<body>
+		<div class="container">
+			<nav class="navbar navbar-expand-lg navbar-light bg-light">
+			  <a class="navbar-brand" href="#">Informer Database</a>
+			  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+			    <span class="navbar-toggler-icon"></span>
+			  </button>
+			  <div class="collapse navbar-collapse" id="navbarNav">
+			    <ul class="navbar-nav">
+			      <li class="nav-item">
+			        <a class="nav-link" href="/">Home</a>
+			      </li>
+			      <li class="nav-item active">
+			        <a class="nav-link" href="/input/">Input <span class="sr-only">(current)</span></a>
+			      </li>
+			      <li class="nav-item">
+			        <a class="nav-link" href="/view/">View</a>
+			      </li>
+			    </ul>
+			  </div>
+			</nav>
+			<div class="jumbotron">
+			  <form method="post" action="/input/" id="inputForm">
+			{% csrf_token %}
+			 <div class="form-group">
+    			<label for="name">Name of Informer</label>
+   				<input type="text" class="form-control" id="name" placeholder="Name" name="informerName">
+  			</div>
+  			<div class="form-group">
+    			<label for="mobile">Mobile Number of Informer</label>
+   				<input type="text" class="form-control" id="mobile" placeholder="+91-" name="informerMobile">
+  			</div>
+  			<div class="form-group">
+    			<label for="address">Address of Informer</label>
+   				<input type="text" class="form-control" id="address" placeholder="Address" name="informerAddress">
+  			</div>
+  			 <div class="form-group">
+    			<label for="beats">Example select</label>
+    			<select class="form-control" id="beats" name="beatsName" form="inputForm">
+					{% for beats in allBeats %}
+					<option value="{{beats.beatsName}}">{{beats.beatsName}}</option>
+					{% endfor %}
+				</select>
+			</div>
+
+			<button type="submit" class="btn btn-primary mb-2">Register Details</button>
+		</form>
+			</div>
+		</div>
+		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+	</body>
+
+</html>
